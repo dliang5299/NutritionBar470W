@@ -26,7 +26,7 @@ theme_set(theme_bw())
 
 ```{r}
 # create model
-mod_full <- aov(Glucose ~ Gender + NutritionBar*Minutes + Error(Participant), data = nb)
+mod_full <- aov(Glucose ~ (Gender+NutritionBar+Minutes)^2 + Error(Participant), data = nb)
 tab_full <- summary(mod_full)
 kable(tab_full$`Error: Participant`[[1]], caption = "Error: Participant")
 kable(tab_full$`Error: Within`[[1]], caption = "Error: Within")
@@ -56,7 +56,7 @@ nb1 <- nb %>% mutate(res = mod_resid,
 r1 <- plot(mod_plot, xlab = "Fitted Values", ylab = "Residuals", pch = 19, col = "black")
 r2 <- qqmath(mod_plot, pch = 19, col = "black")
 r3 <- ggplot(nb1, aes(res)) +
-  geom_histogram() +
+  geom_histogram(binwidth = 1) +
   xlab("Residuals") +
   ylab("Count")
 r4 <- ggplot(nb1, aes(index, res)) +
