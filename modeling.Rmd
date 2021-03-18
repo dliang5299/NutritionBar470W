@@ -14,23 +14,20 @@ library(gridExtra)
 
 # load data
 nb <- readRDS("Data/nb.rds")
-nb1 <- nb %>%
-  mutate(Minutes = as.factor(Minutes),
-         Participant = as.factor(Participant))
 
-# optics
+# visual options
 theme_set(theme_bw())
 ```
 
 ```{r}
 # create model
-mod_full <- aov(Glucose ~ Gender + NutritionBar*factor(Minutes) + Error(factor(Participant)), data = nb)
+mod_full <- aov(Glucose ~ Gender + NutritionBar*Minutes + Error(Participant), data = nb)
 summary(mod_full)
 ```
 
 ```{r}
 # reduce model
-mod_red <- aov(Glucose ~ NutritionBar*factor(Minutes) + Error(factor(Participant)), data = nb)
+mod_red <- aov(Glucose ~ NutritionBar*Minutes + Error(Participant), data = nb)
 summary(mod_red)
 ```
 
@@ -39,8 +36,8 @@ summary(mod_red)
 mod_plot <- lmer(Glucose ~ NutritionBar*Minutes + (1 | NutritionBar:Participant), data = nb)
 mod_resid <- resid(mod_plot)
 mod_fitted <- fitted(mod_plot)
-nb1 <- nb1 %>% mutate(res = mod_resid,
-                      index = 1:n())
+nb1 <- nb %>% mutate(res = mod_resid,
+                     index = 1:n())
 
 # generate plots
 r1 <- plot(mod_plot, xlab = "Fitted Values", ylab = "Residuals", pch = 19, col = "black")
@@ -57,6 +54,6 @@ r4 <- ggplot(nb1, aes(index, res)) +
 grid.arrange(r1, r2, r3, r4, nrow = 2)
 
 # residual checks
-resid_test <- nb$Glucose - mod_fitted
-round(mod_resid, 3) == round(resid_test, 3)
+# resid_test <- nb$Glucose - mod_fitted
+# round(mod_resid, 3) == round(resid_test, 3)
 ```
