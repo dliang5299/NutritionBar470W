@@ -3,6 +3,8 @@ title: "Modeling"
 output:
   pdf_document: default
   html_notebook: default
+header-includes:
+  - \usepackage{caption}
 ---
 
 ```{r include = F}
@@ -11,6 +13,7 @@ library(tidyverse)
 library(lme4)
 library(lattice)
 library(gridExtra)
+library(knitr)
 
 # load data
 nb <- readRDS("Data/nb.rds")
@@ -19,16 +22,26 @@ nb <- readRDS("Data/nb.rds")
 theme_set(theme_bw())
 ```
 
+\captionsetup[table]{labelformat = empty}
+
 ```{r}
 # create model
 mod_full <- aov(Glucose ~ Gender + NutritionBar*Minutes + Error(Participant), data = nb)
-summary(mod_full)
+tab_full <- summary(mod_full)
+kable(tab_full$`Error: Participant`[[1]], caption = "Error: Participant")
+kable(tab_full$`Error: Within`[[1]], caption = "Error: Within")
 ```
+
+\newpage
+
+\captionsetup[table]{labelformat = empty}
 
 ```{r}
 # reduce model
 mod_red <- aov(Glucose ~ NutritionBar*Minutes + Error(Participant), data = nb)
-summary(mod_red)
+tab_red <- summary(mod_red)
+kable(tab_red$`Error: Participant`[[1]], caption = "Error: Participant")
+kable(tab_red$`Error: Within`[[1]], caption = "Error: Within")
 ```
 
 ```{r}
@@ -57,3 +70,5 @@ grid.arrange(r1, r2, r3, r4, nrow = 2)
 # resid_test <- nb$Glucose - mod_fitted
 # round(mod_resid, 3) == round(resid_test, 3)
 ```
+
+
