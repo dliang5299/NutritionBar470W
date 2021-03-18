@@ -1,0 +1,30 @@
+---
+title: "Modeling"
+output: html_notebook
+---
+
+```{r}
+# libraries
+library(tidyverse)
+library(lme4)
+library(MASS)
+
+# load data
+nb <- readRDS("Data/nb.rds")
+```
+
+```{r}
+# create model
+mod_full <- aov(Glucose ~ Gender + NutritionBar*factor(Minutes) + Error(factor(Participant)), data = nb)
+
+summary(mod_full)
+```
+
+```{r}
+mod_red <- aov(Glucose ~  NutritionBar*factor(Minutes) + Error(factor(Participant)), data = nb)
+summary(mod_red)
+```
+
+```{r}
+plot(mod_red$`(Intercept)`)
+```
