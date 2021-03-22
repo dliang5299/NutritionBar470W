@@ -1760,72 +1760,18 @@ summary {
 
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBsaWJyYXJpZXNcbmxpYnJhcnkodGlkeXZlcnNlKVxubGlicmFyeShrbml0cilcbmxpYnJhcnkoc3VtbWFyeXRvb2xzKVxuXG4jIGxvYWQgZGF0YVxubmIgPC0gcmVhZFJEUyhcIkRhdGEvbmIucmRzXCIpXG5gYGAifQ== -->
-<pre class="r"><code># libraries
-library(tidyverse)
-library(knitr)
-library(summarytools)
-
-# load data
-nb &lt;- readRDS(&quot;Data/nb.rds&quot;)</code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBnbHVjb3NlIHN1bW1hcnlcbm5iICU+JVxuICBzZWxlY3QoR2x1Y29zZSkgJT4lXG4gIGRlc2NyKHN0YXRzID0gYyhcIm1lYW5cIiwgXCJzZFwiLCBcIm1pblwiLCBcIm1lZFwiLCBcIm1heFwiKSkgJT4lXG4gIHRiKCkgJT4lXG4gIGthYmxlKClcbmBgYCJ9 -->
-<pre class="r"><code># glucose summary
-nb %&gt;%
-  select(Glucose) %&gt;%
-  descr(stats = c(&quot;mean&quot;, &quot;sd&quot;, &quot;min&quot;, &quot;med&quot;, &quot;max&quot;)) %&gt;%
-  tb() %&gt;%
-  kable()</code></pre>
-<!-- rnb-source-end -->
-
-<!-- rnb-html-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImtuaXRfYXNpcyJdLCJzaXppbmdQb2xpY3kiOltdfX0= -->
-
-<table>
-<thead>
-<tr class="header">
-<th align="left">variable</th>
-<th align="right">mean</th>
-<th align="right">sd</th>
-<th align="right">min</th>
-<th align="right">med</th>
-<th align="right">max</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">Glucose</td>
-<td align="right">23.80556</td>
-<td align="right">9.677129</td>
-<td align="right">8</td>
-<td align="right">22.5</td>
-<td align="right">44</td>
-</tr>
-</tbody>
-</table>
-
-
-<!-- rnb-html-end -->
-
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBmcmVxdWVuY2llcyAtIG5vdCB1c2VkOyBldmVubHkgc3BsaXRcbiMgZnJlcShuYiRHZW5kZXIsIGN1bXVsID0gRiwgcmVwb3J0Lm5hcyA9IEYsIHRvdGFscyA9IEYpICU+JSB0YigpICU+JSBrYWJsZSgpXG4jIGZyZXEobmIkTnV0cml0aW9uQmFyLCBjdW11bCA9IEYsIHJlcG9ydC5uYXMgPSBGLCB0b3RhbHMgPSBGKSAlPiUgdGIoKSAlPiUga2FibGUoKVxuIyBmcmVxKG5iJE1pbnV0ZXMsIGN1bXVsID0gRiwgcmVwb3J0Lm5hcyA9IEYsIHRvdGFscyA9IEYpICU+JSB0YigpICU+JSBrYWJsZSgpXG5gYGAifQ== -->
-<pre class="r"><code># frequencies - not used; evenly split
-# freq(nb$Gender, cumul = F, report.nas = F, totals = F) %&gt;% tb() %&gt;% kable()
-# freq(nb$NutritionBar, cumul = F, report.nas = F, totals = F) %&gt;% tb() %&gt;% kable()
-# freq(nb$Minutes, cumul = F, report.nas = F, totals = F) %&gt;% tb() %&gt;% kable()</code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkVEQSBUYWJsZXMiDQpvdXRwdXQ6DQogIHBkZl9kb2N1bWVudDogZGVmYXVsdA0KICBodG1sX25vdGVib29rOiBkZWZhdWx0DQotLS0NCg0KYGBge3J9DQojIGxpYnJhcmllcw0KbGlicmFyeSh0aWR5dmVyc2UpDQpsaWJyYXJ5KGtuaXRyKQ0KbGlicmFyeShzdW1tYXJ5dG9vbHMpDQoNCiMgbG9hZCBkYXRhDQpuYiA8LSByZWFkUkRTKCJEYXRhL25iLnJkcyIpDQpgYGANCg0KYGBge3J9DQojIGdsdWNvc2Ugc3VtbWFyeQ0KbmIgJT4lDQogIHNlbGVjdChHbHVjb3NlKSAlPiUNCiAgZGVzY3Ioc3RhdHMgPSBjKCJtZWFuIiwgInNkIiwgIm1pbiIsICJtZWQiLCAibWF4IikpICU+JQ0KICB0YigpICU+JQ0KICBrYWJsZSgpDQpgYGANCg0KYGBge3J9DQojIGZyZXF1ZW5jaWVzIC0gbm90IHVzZWQ7IGV2ZW5seSBzcGxpdA0KIyBmcmVxKG5iJEdlbmRlciwgY3VtdWwgPSBGLCByZXBvcnQubmFzID0gRiwgdG90YWxzID0gRikgJT4lIHRiKCkgJT4lIGthYmxlKCkNCiMgZnJlcShuYiROdXRyaXRpb25CYXIsIGN1bXVsID0gRiwgcmVwb3J0Lm5hcyA9IEYsIHRvdGFscyA9IEYpICU+JSB0YigpICU+JSBrYWJsZSgpDQojIGZyZXEobmIkTWludXRlcywgY3VtdWwgPSBGLCByZXBvcnQubmFzID0gRiwgdG90YWxzID0gRikgJT4lIHRiKCkgJT4lIGthYmxlKCkNCmBgYA0KDQoNCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkVEQSBUYWJsZXMiDQpvdXRwdXQ6DQogIHBkZl9kb2N1bWVudDogZGVmYXVsdA0KICBodG1sX25vdGVib29rOiBkZWZhdWx0DQotLS0NCg0KYGBge3IgaW5jbHVkZSA9IEZ9DQojIGxpYnJhcmllcw0KbGlicmFyeSh0aWR5dmVyc2UpDQpsaWJyYXJ5KGtuaXRyKQ0KbGlicmFyeShzdW1tYXJ5dG9vbHMpDQpsaWJyYXJ5KGVtbWVhbnMpDQoNCiMgbG9hZCBkYXRhDQpuYiA8LSByZWFkUkRTKCJEYXRhL25iLnJkcyIpDQoNCiMgbG9hZCBtb2RlbA0KbW9kIDwtIHJlYWRSRFMoInJlZHVjZWRfbW9kZWwuUkRTIikNCmBgYA0KDQpgYGB7ciBlY2hvID0gRn0NCiMgZ2x1Y29zZSBzdW1tYXJ5DQpuYiAlPiUNCiAgc2VsZWN0KEdsdWNvc2UpICU+JQ0KICBkZXNjcihzdGF0cyA9IGMoIm1lYW4iLCAic2QiLCAibWluIiwgIm1lZCIsICJtYXgiKSkgJT4lDQogIHRiKCkgJT4lDQogIGthYmxlKCkNCmBgYA0KDQpgYGB7ciBlY2hvID0gRn0NCiMgdHVrZXkgY29tcGFyaXNvbnMNCm5iX3R1a2V5IDwtIGVtbWVhbnMobW9kLCBsaXN0KHBhaXJ3aXNlIH4gTnV0cml0aW9uQmFyKSwgYWRqdXN0ID0gInR1a2V5IikNCm1pbl90dWtleSA8LSBlbW1lYW5zKG1vZCwgbGlzdChwYWlyd2lzZSB+IE1pbnV0ZXMpLCBhZGp1c3QgPSAidHVrZXkiKQ0KDQprYWJsZShuYl90dWtleSRgcGFpcndpc2UgZGlmZmVyZW5jZXMgb2YgTnV0cml0aW9uQmFyYCkNCmthYmxlKG1pbl90dWtleSRgcGFpcndpc2UgZGlmZmVyZW5jZXMgb2YgTWludXRlc2ApDQpgYGANCg0KDQo=</div>
 
 
 
@@ -1872,7 +1818,7 @@ $(document).ready(function () {
 <!-- code folding -->
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("eda_tables.Rmd");
+  window.initializeSourceEmbed("eda_tukey_tables.Rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>

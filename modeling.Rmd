@@ -66,6 +66,9 @@ r4 <- ggplot(nb1, aes(index, res)) +
   ylab("Residuals")
 grid.arrange(r1, r2, r3, r4, nrow = 2)
 
+# save model
+saveRDS(mod_plot, "reduced_model.RDS")
+
 # residual checks
 # resid_test <- nb$Glucose - mod_fitted
 # round(mod_resid, 3) == round(resid_test, 3)

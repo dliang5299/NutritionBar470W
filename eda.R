@@ -1,5 +1,6 @@
 # libraries
 library(tidyverse)
+library(emmeans)
 
 # visual options
 theme_set(theme_bw())
@@ -22,15 +23,3 @@ ggplot(nb, aes(x = NutritionBar, y = Glucose, fill = Minutes)) +
 # minute diff. in glucose
 ggplot(nb, aes(x = Minutes, y = Glucose)) +
   geom_boxplot()
-
-# 75 min. glucose - not needed; answered by brand stability plot
-# nb75 <-
-#   nb %>%
-#   filter(Minutes == "75")
-# ggplot(nb75, aes(x = NutritionBar, y = Glucose)) +
-#   geom_boxplot() +
-#   ylab("Glucose at 75 Minutes")
-
-# tukey plots
-
-

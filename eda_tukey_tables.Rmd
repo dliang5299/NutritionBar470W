@@ -1,0 +1,40 @@
+---
+title: "EDA Tables"
+output:
+  pdf_document: default
+  html_notebook: default
+---
+
+```{r include = F}
+# libraries
+library(tidyverse)
+library(knitr)
+library(summarytools)
+library(emmeans)
+
+# load data
+nb <- readRDS("Data/nb.rds")
+
+# load model
+mod <- readRDS("reduced_model.RDS")
+```
+
+```{r echo = F}
+# glucose summary
+nb %>%
+  select(Glucose) %>%
+  descr(stats = c("mean", "sd", "min", "med", "max")) %>%
+  tb() %>%
+  kable()
+```
+
+```{r echo = F}
+# tukey comparisons
+nb_tukey <- emmeans(mod, list(pairwise ~ NutritionBar), adjust = "tukey")
+min_tukey <- emmeans(mod, list(pairwise ~ Minutes), adjust = "tukey")
+
+kable(nb_tukey$`pairwise differences of NutritionBar`)
+kable(min_tukey$`pairwise differences of Minutes`)
+```
+
+
