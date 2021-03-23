@@ -23,3 +23,12 @@ ggplot(nb, aes(x = NutritionBar, y = Glucose, fill = Minutes)) +
 # minute diff. in glucose
 ggplot(nb, aes(x = Minutes, y = Glucose)) +
   geom_boxplot()
+
+# 15 to 45 change
+nb1 <- nb %>%
+  pivot_wider(id_cols = c(Participant, NutritionBar, Gender), names_from = Minutes, values_from = Glucose) %>%
+  mutate(Change = `45` - `15`)
+ggplot(nb1, aes(x = NutritionBar, y = Change)) +
+  geom_boxplot() +
+  ylab("Change in Blood Glucose from 15 to 45 Minutes")
+  
