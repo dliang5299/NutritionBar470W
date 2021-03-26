@@ -22,7 +22,7 @@ mod <- readRDS("reduced_model.RDS")
 ```{r echo = F}
 # glucose summary
 nb %>%
-  select(Glucose) %>%
+  dplyr::select(Glucose) %>%
   descr(stats = c("mean", "sd", "min", "med", "max")) %>%
   tb() %>%
   kable()
@@ -30,13 +30,27 @@ nb %>%
 
 ```{r echo = F}
 # tukey comparisons
-# nb_tukey <- emmeans(mod, list(pairwise ~ NutritionBar), adjust = "tukey")
-# min_tukey <- emmeans(mod, list(pairwise ~ Minutes), adjust = "tukey")
-minnb_tukey <- min_tukey <- emmeans(mod, list(pairwise ~ NutritionBar * Minutes), adjust = "tukey")
+minnb <- emmeans(mod, pairwise ~ NutritionBar * Minutes)
+comp_tab <- multcomp::cld(minnb$emmeans, alpha = 0.05 , Letters = LETTERS) %>%
+  rename(Mean = emmean,
+         Group = .group,
+         DF = df,
+         `Lower CL` = lower.CL,
+         `Upper CL` = upper.CL) %>%
+  mutate(Group = trimws(Group),
+         Group = ifelse(Group ==  "BCD", "  BCD", Group),
+         Group = ifelse(Group ==  "CDE", "     CDE", Group),
+         Group = ifelse(Group ==  "DE", "       DE", Group),
+         Group = ifelse(Group ==  "E", "          E", Group),
+         Group = gsub(" ", "&nbsp;", Group, fixed = TRUE))
 
-# kable(nb_tukey$`pairwise differences of NutritionBar`)
-# kable(min_tukey$`pairwise differences of Minutes`)
-kable(minnb_tukey$`pairwise differences of NutritionBar, Minutes`)
+kable(comp_tab, row.names = F)
 ```
 
-
+```{r}
+# other comparisons
+# nb_tukey <- emmeans(mod, list(pairwise ~ NutritionBar), adjust = "tukey")
+# min_tukey <- emmeans(mod, list(pairwise ~ Minutes), adjust = "tukey")
+# kable(nb_tukey$`pairwise differences of NutritionBar`)
+# kable(min_tukey$`pairwise differences of Minutes`)
+```
