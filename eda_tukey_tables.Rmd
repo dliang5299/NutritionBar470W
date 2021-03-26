@@ -30,11 +30,13 @@ nb %>%
 
 ```{r echo = F}
 # tukey comparisons
-nb_tukey <- emmeans(mod, list(pairwise ~ NutritionBar), adjust = "tukey")
-min_tukey <- emmeans(mod, list(pairwise ~ Minutes), adjust = "tukey")
+# nb_tukey <- emmeans(mod, list(pairwise ~ NutritionBar), adjust = "tukey")
+# min_tukey <- emmeans(mod, list(pairwise ~ Minutes), adjust = "tukey")
+minnb_tukey <- min_tukey <- emmeans(mod, list(pairwise ~ NutritionBar * Minutes), adjust = "tukey")
 
-kable(nb_tukey$`pairwise differences of NutritionBar`)
-kable(min_tukey$`pairwise differences of Minutes`)
+# kable(nb_tukey$`pairwise differences of NutritionBar`)
+# kable(min_tukey$`pairwise differences of Minutes`)
+kable(minnb_tukey$`pairwise differences of NutritionBar, Minutes`)
 ```
 
 
