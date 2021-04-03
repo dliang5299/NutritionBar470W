@@ -17,6 +17,7 @@ library(knitr)
 
 # load data
 nb <- readRDS("Data/nb.rds")
+nb_cond <- readRDS("Data/nb_condensed.RDS")
 
 # visual options
 theme_set(theme_bw())
@@ -74,4 +75,8 @@ saveRDS(mod_plot, "reduced_model.RDS")
 # round(mod_resid, 3) == round(resid_test, 3)
 ```
 
-
+```{r}
+# create 15 to 45 change model
+mod_2 <- lm(Change ~ NutritionBar, data = nb_cond) %>% summary()
+kable(mod_2$coefficients)
+```

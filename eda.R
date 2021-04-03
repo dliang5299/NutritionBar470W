@@ -31,4 +31,7 @@ nb1 <- nb %>%
 ggplot(nb1, aes(x = NutritionBar, y = Change)) +
   geom_boxplot() +
   ylab("Change in Blood Glucose from 15 to 45 Minutes")
+
+# save condensed data
+saveRDS(nb1, "Data/nb_condensed.RDS")
   
